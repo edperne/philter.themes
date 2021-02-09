@@ -47,7 +47,8 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "no-unused-vars": "off"
+      "no-unused-vars": "off",
+      "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }]
     },
       "overrides": [
       {
@@ -56,7 +57,7 @@
           "**/tests/unit/**/*.spec.{j,t}s?(x)",
           "ApiRequest.js",
           "OthersImages.vue",
-          "UsersImages.vue",
+          "UserImages.vue",
           "Register.vue",
           "**/store/index.js",
           "**/partials/header.vue",

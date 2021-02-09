@@ -17,7 +17,6 @@ export default {
   components: {
     AddImage,
     // OthersImages,
-    
   },
 };
 </script>

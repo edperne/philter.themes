@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import { shallowMount } from '@vue/test-utils';
-import Addimage from '@/views/Addimage.vue';
+import Upload from '@/views/Upload.vue';
 
-describe('Account.vue', () => {
+describe('Upload.vue', () => {
   it('renders heading', () => {
-    const add_image = 'Add An Image';
-    const wrapper = shallowMount(Addimage, {});
-    expect(wrapper.text()).to.include(add_image);
+    const addImage = 'Add An Image';
+    const wrapper = shallowMount(Upload, {});
+    expect(wrapper.text()).to.include(addImage);
   });
 });

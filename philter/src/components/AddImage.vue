@@ -5,7 +5,7 @@
         <div class="form-group">
             <label>Name</label>
             <input type="text" name="title" class="form-control"
-            v-model="apiRequest.name" maxlength="50"> 
+            v-model="apiRequest.name" maxlength="50">
         </div>
         <div class="form-group">
             <label>Description</label>
@@ -90,12 +90,12 @@ export default {
     addImage() {
       Swal.fire({
         title: 'Are you sure?',
-        text: "A new image will be added to your account!",
+        text: 'A new image will be added to your account!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, add a new image!'
+        confirmButtonText: 'Yes, add a new image!',
       }).then((result) => {
         if (result.value) {
           const endpoint = 'addImage';
@@ -105,28 +105,25 @@ export default {
               this.successMessage = response.data;
               this.errorMessage = '';
               this.$router.push('/images');
-
             })
             .catch((errors) => {
               this.errorMessage = errors;
-              // this.successMessage = '';
+              this.successMessage = '';
             });
-            Swal.fire(
+          Swal.fire(
             'Uploaded!',
             'New image has been added.',
-            'success'
-            )
+            'success',
+          );
         }
       });
     },
 
-         
     onUpload(event) {
       const fileHandle = event.target.files[0];
       this.apiRequest.file = this.$refs.fileHandle.files[0];
-      console.log('this is the file data >>>', fileHandle);
+      // console.log('this is the file data >>>', fileHandle);
     },
-
   }, // method close bracket
 }; // export default close bracket
 </script>

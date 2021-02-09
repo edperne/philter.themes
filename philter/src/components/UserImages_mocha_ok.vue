@@ -82,9 +82,9 @@ export default {
     };
   },
   created() {
-    const token = token;
+    let token = token;
     axios
-      .get('http://bit703.module6/api/v1/images/user', { headers: { Authorization: `Bearer ${this.token}` } })
+      .get('http://bit703.module6/api/v1/images/user', { headers: { Authorization: `Bearer  ${this.$store.getters.getToken}` } })
       .then((response) => {
         this.userImages = response.data;
         this.errors = '';
@@ -95,10 +95,10 @@ export default {
       });
   },
   methods: {
-    deleteImage: function (image) { /* eslint func-names: ["error", "never"] */
+    deleteImage: (image) => { /* eslint func-names: ["error", "never"] */
       this.$emit('delete-image', image);
-      axios.delete('http://bit703.module6/api/v1/users/delete/' + image.id, { headers: { Authorization: `Bearer ${this.token}` } })
-      // axios.delete(`http://bit703.module6/api/v1/users/delete/, ${image.id}`, { headers: { Authorization: `Bearer ${this.token}` } })
+      // axios.delete('http://bit703.module6/api/v1/users/delete/' + image.id, { headers: { Authorization: `Bearer ${this.token}` } })
+      axios.delete(`http://bit703.module6/api/v1/users/delete/, ${image.id}`, { headers: { Authorization: `Bearer ${this.token}` } })
         .then((response) => {
           const idx = this.userImages.indexOf(image);
           // console.log('index of this image >', idx);

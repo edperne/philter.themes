@@ -31,7 +31,7 @@
         <div class="form-group">
             <label>Full Name</label>
             <input id="name" type="text" name="name" placeholder="Enter your full name"
-            maxlength="50" required v-model="apiRequest.name" 
+            maxlength="50" required v-model="apiRequest.name"
             class="form-control" />
         </div>
         <div class="form-group">
@@ -81,26 +81,14 @@ export default {
         .then((response) => {
           this.successMessage = response;
           this.errorMessage = '';
-          console.log(response);
+          // console.log(response);
         })
-      
         .catch((errors) => {
           this.errorMessage = errors;
           this.successMessage = '';
-          console.log("error message is",this.successMessage);
-          
-       //	.catch(onrejected:error => {
-	       //     console.log(error.response);
-        //** atempt to get the response payload error message - TODO
-        //.catch((error) => {
-        // if request is bad, show an error to the user provided by the server
-        // api issue with axios, quick fix add extra response object
-          // if (error.response) {
-            //dispatch(authError(response.response.data.error));
-            //console.log(response.response.data.error); // => the response payload 
-          //}
-        }); //catch error closing brackets
-     },
+          // console.log("error message is",this.successMessage);
+        }); // catch error closing brackets
+    },
   },
 };
 </script>

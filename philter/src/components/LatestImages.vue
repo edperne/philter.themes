@@ -58,7 +58,7 @@ export default {
       const endpoint = 'images/latest';
       this.apiRequest.get(endpoint)
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           this.othersImages = response;
           this.errors = '';
         })

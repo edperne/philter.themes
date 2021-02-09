@@ -4,8 +4,8 @@ import Account from '@/views/Account.vue';
 
 describe('Account.vue', () => {
   it('renders heading', () => {
-    const user_login = 'User Login/Registration';
+    const userLogin = 'User Login/Registration';
     const wrapper = shallowMount(Account, {});
-    expect(wrapper.text()).to.include(user_login);
+    expect(wrapper.text()).to.include(userLogin);
   });
 });

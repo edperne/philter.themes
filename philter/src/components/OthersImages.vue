@@ -49,7 +49,7 @@ export default {
     token() {
       return this.$store.getters.getToken;
     },
-  },  
+  },
   created() {
     this.fetchImages();
   },
@@ -63,10 +63,10 @@ export default {
   methods: {
     fetchImages() {
       const endpoint = 'images/others';
-      this.apiRequest.addStore(this.$store);      
+      this.apiRequest.addStore(this.$store);
       this.apiRequest.getOthers(endpoint)
         .then((response) => {
-          console.log('Others images >>>',response.data);
+          // console.log('Others images >>>', response.data);
           this.othersImages = response;
           this.errors = '';
         })

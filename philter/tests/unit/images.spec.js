@@ -4,8 +4,8 @@ import Images from '@/views/Images.vue';
 
 describe('Account.vue', () => {
   it('renders heading', () => {
-    const latest_images = 'Latest Images';
+    const otherImages = 'Other Images';
     const wrapper = shallowMount(Images, {});
-    expect(wrapper.text()).to.include(latest_images);
+    expect(wrapper.text()).to.include(otherImages);
   });
 });
