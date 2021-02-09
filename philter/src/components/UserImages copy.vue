@@ -64,8 +64,6 @@
 <script>
 import { mapGetters } from 'vuex';
 import axios from 'axios';
-import Swal from 'sweetalert2';
-import 'sweetalert2/src/sweetalert2.scss';
 
 export default {
   name: 'userImages',
@@ -98,40 +96,23 @@ export default {
   },
   methods: {
     deleteImage: function (image) { /* eslint func-names: ["error", "never"] */
-      Swal.fire({
-        title: 'Are you sure?',
-        text: 'This image will be permanently deleted!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete this image!',
-      }).then((result) => {
-        if (result.value) {
-          this.$emit('delete-image', image);
-          axios.delete('http://bit703.module6/api/v1/users/delete/' + image.id, { headers: { Authorization: `Bearer ${this.token}` } })
-          // axios.delete(`http://bit703.module6/api/v1/users/delete/, ${image.id}`, { headers: { Authorization: `Bearer ${this.token}` } })
-            .then((response) => {
-              const idx = this.userImages.indexOf(image);
-              // console.log('index of this image >', idx);
-              this.userImages.splice(idx, 1);
-              // this.userImages = response.data;
-              this.successMessage = response.data;
-              this.errorMessage = '';
-              // console.log('UserImages response data here:', response.data);
-            })
-            .catch((errors) => {
-              this.errorMessage = errors;
-              this.successMessage = '';
-            });
-          Swal.fire(
-            'Deleted!',
-            'Image has been deleted.',
-            'success',
-          );
-        }
-      });
+      this.$emit('delete-image', image);
+      axios.delete('http://bit703.module6/api/v1/users/delete/' + image.id, { headers: { Authorization: `Bearer ${this.token}` } })
+      // axios.delete(`http://bit703.module6/api/v1/users/delete/, ${image.id}`, { headers: { Authorization: `Bearer ${this.token}` } })
+        .then((response) => {
+          const idx = this.userImages.indexOf(image);
+          // console.log('index of this image >', idx);
+          this.userImages.splice(idx, 1);
+          // this.userImages = response.data;
+          this.successMessage = response.data;
+          this.errorMessage = '';
+          // console.log('UserImages response data here:', response.data);
+        })
+        .catch((errors) => {
+          this.errorMessage = errors;
+          this.successMessage = '';
+        });
     }, // closing deleteImage function
-  }, // method closing bracket
+  },
 }; // export closing bracket
 </script>
