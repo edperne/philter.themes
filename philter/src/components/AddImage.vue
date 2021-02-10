@@ -5,22 +5,22 @@
         <div class="form-group">
             <label>Name</label>
             <input type="text" name="title" class="form-control"
-            v-model="apiRequest.name" maxlength="50">
+            v-model="apiRequest.name" maxlength="50" required>
         </div>
         <div class="form-group">
             <label>Description</label>
             <input type="text" name="description" class="form-control"
-            v-model="apiRequest.description" maxlength="100">
+            v-model="apiRequest.description" maxlength="100" required>
         </div>
         <div class="form-group">
             <label>Tag - add a comma after each tag.</label>
             <input type="text" name="tag" class="form-control"
-            v-model="apiRequest.tag" maxlength="100">
+            v-model="apiRequest.tag" maxlength="100" required>
         </div>
         <div class="form-group">
             <label>Filter</label>
             <select v-model = "apiRequest.filter"
-            name="filter" class="custom-select">
+            name="filter" class="custom-select" required>
                 <option value="_1977">1977</option>
                 <option value="aden">Aden</option>
                 <option value="brannan">Brannan</option>

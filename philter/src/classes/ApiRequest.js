@@ -1,6 +1,4 @@
-/* eslint no-use-before-define: 0 */
 import axios from 'axios';
-import Axios from 'axios';
 
 class ApiRequest {
   /**
@@ -62,7 +60,7 @@ class ApiRequest {
    * Send a GET request to the given URL.
    * @param {string} endpoint
    */
-  get(endpoint, auth=false) {
+  get(endpoint, auth = false) {
     return this.submit('get', endpoint);
   }
 
@@ -70,19 +68,19 @@ class ApiRequest {
    * Send a POST request to the given URL.
    * @param {string} endpoint
    */
-  post(endpoint, auth=false) {
+  post(endpoint, auth = false) {
     this.addData();
     this.headers.Authorization = `Bearer  ${this.store.getters.getToken}`;
     return this.submit('post', endpoint);
   }
 
-   /**LISA'S CODE**
+  /** LISA'S CODE**
    * Send a POST request to the given URL.
    * @param {string} endpoint
    */
-  register(endpoint, auth=false) {
+  register(endpoint, auth = false) {
     this.addData();
-      return this.submit('post', endpoint);
+    return this.submit('post', endpoint);
   }
 
   /**
@@ -94,20 +92,20 @@ class ApiRequest {
   submit(requestType, endpoint) {
     return new Promise((resolve, reject) => {
       this.Axios({
-        method: requestType, 
+        method: requestType,
         url: this.url + endpoint,
-        header: this.headers, 
+        header: this.headers,
         data: this.data,
       })
-      .then((response) => {
-        if (response.headers.authorization) {
-          this.storeToken(response.headers.authorization);
-        }
-        resolve(response.data);
-      })
-      .catch((error) => {
-        reject(error.message);
-      });
+        .then((response) => {
+          if (response.headers.authorization) {
+            this.storeToken(response.headers.authorization);
+          }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error.message);
+        });
     });
   }
 
@@ -121,89 +119,107 @@ class ApiRequest {
       }
     }
   }
-  /**LISA's CODE**
-   * Submit the APIRequest.
-   *
+  /** LISA's CODE**
+   * Submit the APIRequest - Upload
+   * Post request to upload newm images
    * @param {string} requestType
    * @param {string} endpoint
    */
 
-  upload(endpoint, auth=false) {
+  upload(endpoint, auth = false) {
     this.addData();
     this.headers.Authorization = `Bearer  ${this.store.getters.getToken}`;
-    return this.submit_upload('post', endpoint);
-   }
-   getOthers(endpoint, auth=false) {
+    return this.submitUpload('post', endpoint);
+  }
+
+  /** LISA's CODE**
+   * Submit the APIRequest - getOther images
+   * Get request for other images
+   * @param {string} requestType
+   * @param {string} endpoint
+   */
+  getOthers(endpoint, auth = false) {
     this.headers.Authorization = `Bearer  ${this.store.getters.getToken}`;
-    return this.submit_others('get', endpoint);
-   }
+    return this.submitOthers('get', endpoint);
+  }
 
-  submit_upload(requestType, endpoint) {
+  /** LISA's CODE**
+   * Submit the APIRequest. Sumbit upload
+   * Post request to upload images
+   * @param {string} requestType
+   * @param {string} endpoint
+   */
+  submitUpload(requestType, endpoint) {
     return new Promise((resolve, reject) => {
-      console.log('token >>',this.headers.Authorization);
+      // console.log('token >>', this.headers.Authorization);
       this.Axios({
-        method: requestType, 
+        method: requestType,
         url: this.url + endpoint,
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${this.store.getters.getToken}`
-         },
-         data: this.data,         
-          })
-      .then((response) => {
-        resolve(response.data);
-        console.log('upload response data >>>',response.data);
-      })
-      .catch((error) => {
-        reject(error.message);
-      });
-     });
-  }
-
-  submit_others(requestType, endpoint) {
-    return new Promise((resolve, reject) => {
-      console.log('token >>',this.headers.Authorization);
-      //axios.post('http://bit703.module6/api/v1/addimage/',
-      // { headers: 'Content-Type': 'multipart/form-data', {"Authorization" : `Bearer ${this.token}`} } )
-      //.then((response) => {
-      this.Axios({
-        method: requestType, 
-        url: this.url + endpoint,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${this.store.getters.getToken}`
-         },
-          })
-      .then((response) => {
-        resolve(response.data);
-        console.log('upload response data >>>',response.data);
-      })
-      .catch((error) => {
-        reject(error.message);
-      });
-     });
-  }
-
-  register_user(requestType, endpoint) {
-    return new Promise((resolve, reject) => {
-      this.Axios({
-        method: requestType, 
-        url: this.url + endpoint,
+          Authorization: `Bearer ${this.store.getters.getToken}`,
+        },
         data: this.data,
       })
-      .then((response) => {
-        if (response.headers.authorization) {
-          this.storeToken(response.headers.authorization);
-        }
-        resolve(response.data);
-      })
-      .catch((error) => {
-        reject(error.message);
-      });
+        .then((response) => {
+          resolve(response.data);
+          // console.log('upload response data >>>', response.data);
+        })
+        .catch((error) => {
+          reject(error.message);
+        });
     });
   }
 
+  /** LISA's CODE**
+   * Submit the APIRequest. Sumbit other images
+   * Get request for other images
+   * @param {string} requestType
+   * @param {string} endpoint
+   */
+  submitOthers(requestType, endpoint) {
+    return new Promise((resolve, reject) => {
+      // console.log('token >>',this.headers.Authorization);
+      this.Axios({
+        method: requestType,
+        url: this.url + endpoint,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${this.store.getters.getToken}`,
+        },
+      })
+        .then((response) => {
+          resolve(response.data);
+          // console.log('upload response data >>>', response.data);
+        })
+        .catch((error) => {
+          reject(error.message);
+        });
+    });
+  }
+  /** LISA's CODE**
+   * Submit the APIRequest. Regist new user
+   * Post request to add new user
+   * @param {string} requestType
+   * @param {string} endpoint
+   */
+  registerUser(requestType, endpoint) {
+    return new Promise((resolve, reject) => {
+      this.Axios({
+        method: requestType,
+        url: this.url + endpoint,
+        data: this.data,
+      })
+        .then((response) => {
+          if (response.headers.authorization) {
+            this.storeToken(response.headers.authorization);
+          }
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error.message);
+        });
+    });
+  }
 }
-
-
 export default ApiRequest;

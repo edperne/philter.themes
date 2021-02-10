@@ -32,9 +32,11 @@
           id="userSigninLogin"
           v-model="apiRequest.login"
           name="login"
-          type="text"
+          type="email"
           placeholder="Enter your email"
           class="form-control"
+          maxlength ="50"
+          required
         >
       </div>
       <div class="form-group">
@@ -46,6 +48,8 @@
           type="password"
           placeholder="Enter your password"
           class="form-control"
+          maxlength ="50"
+          required
         >
       </div>
       <button
